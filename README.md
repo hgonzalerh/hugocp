@@ -1,2 +1,2 @@
 # hugocp
-Some Python tooling to create a drop-in replacement for UUCP tools.
+Some Python tooling to create a drop-in replacement for UUCP tools. Requires scp.
