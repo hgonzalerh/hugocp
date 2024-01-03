@@ -1,6 +1,6 @@
 #!/bin/env python
 '''
-hugocp, an implementation of some of the uucp command, using scp as a back end
+hugocp, an implementation of some of the uucp commands, using scp as a back end
 
 All auth setup should be done outside the utility
 Usage:
@@ -23,7 +23,7 @@ with open(system_config_file) as fo:
 def scan_spool_dir(source_file):
     ''' Scan the whole spool dir and initiate transfers. If source_file is included, 
     initiate only one trasfer for it'''
-    with controlfile as open(source_file + '.control', 'r'):
+    with open(source_file + '.control', 'r') as controlfile:
         scp_cli = controlfile.read().strip()
     subprocess.run(f"scp {spool_dir}/{source_file} {scp_cli}")
 
@@ -39,7 +39,7 @@ destination_regex = r'([._\w]+)!([._\w]+:)?([/-.\w]+)'
 
 def enqueue_transfer(source_file, destination_path):
     """Create a control file and copy both the tx file and the control to the spool dir"""
-    with controlfile as open(source_file + '.control', 'w'):
+    with open(source_file + '.control', 'w') as controlfile:
         controlfile.write(destination_path)
 
 
